@@ -1,19 +1,23 @@
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.jsx",
   output: {
-	  path: "build",
+	  path: "./build",
 	  filename: "index.js"
   },
   module: {
 	  loaders: [
           {
-              test: /\.js$/,
+              test: /\.jsx?$/,
               loader: 'babel-loader',
-              exclude: /node_modules/
+              exclude: /node_modules/,
+              query: {
+                presets: ["es2015", "react"]
+              }
           }
       ]
   },
-  devServer: {
-      hot: true
-  }
+  resolve: {
+      extensions: ['', '.js', '.jsx']
+  },
+  devtool: 'source-map'
 }
